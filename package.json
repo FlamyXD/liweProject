@@ -1,0 +1,38 @@
+{
+  "name": "Liwe",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "react-native-scripts": "1.13.2",
+    "jest-expo": "26.0.0",
+    "react-test-renderer": "16.3.0-alpha.1"
+  },
+  "rnpm": {
+    "assets": [
+      "./android/app/src/main/assets/fonts"
+    ]
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "expo": "^26.0.0",
+    "git": "^0.1.5",
+    "mysql": "^2.15.0",
+    "react": "16.3.0",
+    "react-native": "^0.54.4",
+    "react-native-button": "^2.3.0",
+    "react-native-elements": "^1.0.0-beta7",
+    "react-native-gifted-chat": "^0.4.3",
+    "react-native-shadow": "^1.2.2",
+    "react-navigation": "^2.18.3"
+  }
+}
