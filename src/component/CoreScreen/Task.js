@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import {ImageBackground,Image,ScrollView,StatusBar, View, Text,TextInput,StyleSheet, TouchableOpacity, MaterialCommunityIcons} from 'react-native';
-import { createStackNavigator,navigationOptions } from 'react-navigation';
+import { createStackNavigator,navigationOptions,createDrawerNavigator, DrawerActions} from 'react-navigation';
 import { Icon} from 'react-native-elements'
 
 const Header = () =>
 {
   return(
     <View style={Styles.header}>
-    <TouchableOpacity style={{flex:1}}
-    onPress={()=>this.props.navigation.navigate("HomeScreen")}>
+    <TouchableOpacity
+    onPress={() => this.props.navigation.goBack()}
+    style={{flex:1}}>
       <Text style = {Styles.text}>
         Task
-        </Text>
+      </Text>
     </TouchableOpacity>
   </View>)
 }
 
-const ScrollContent =()=>{
+const ScrollContent = () =>{
   return(
     <View style={{backgroundColor:"white"}}>
       <Text>
@@ -51,7 +52,7 @@ export default class TheTask extends React.Component
 
 const Styles = StyleSheet.create({
   scrollView:{
-  
+
   },
   image:{
     marginTop:20,

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text,TextInput,StyleSheet,Icon,TouchableOpacity } from 'react-native';
 import { createStackNavigator,navigationOptions,DrawerActions } from 'react-navigation';
 import Button from 'react-native-button';
+import GetData from './Responses';
+
 
 
 export default class Log extends Component
@@ -30,7 +32,7 @@ static navigationOptions = {header:null}
           <View style={{alignItems:'center',justifyContent:'center',top:'30%'}}>
             <TextInput
               style={Styles.login_input}
-              placeholder="  Login"
+              placeholder= "Login"
               placeholderTextColor="#fff"
               underlineColorAndroid="#fff0"
               maxLength={14}
@@ -42,7 +44,7 @@ static navigationOptions = {header:null}
               placeholderTextColor="#fff"
               underlineColorAndroid="#fff0"
               maxLength={14}
-              onChangeText={(passwd) => this.setState({passwd})}
+              onChangeText={(password) => this.setState({password})}
             />
           </View>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-end',bottom:'10%' }}>
@@ -51,9 +53,10 @@ static navigationOptions = {header:null}
                 style={{fontSize: 20, color: 'green'}}
                 onPress={() =>
                   {
+                  login = this.state.login
+                  password = this.state.password
+                  GetData(login,password)
                   this.props.navigation.dispatch(DrawerActions.toggleDrawer())
-                  login   = this.state.login
-                  passwd  = this.state.passwd
                   }
                 }>
                 Вход

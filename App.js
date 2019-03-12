@@ -10,6 +10,7 @@ import CompleteTasks from './src/component/CoreScreen/CompleteTasks'
 import Settings from './src/component/CoreScreen/Settings'
 
 
+
 import { createStackNavigator, createAppContainer, createSwitchNavigator,createDrawerNavigator } from 'react-navigation';
 
 const PreLoadStack = createStackNavigator({
@@ -28,7 +29,8 @@ const DrawerStack = createDrawerNavigator({
   Profile: ProfileScreen,
   CompleteTasks: CompleteTasks,
   Settings: Settings
-})
+}
+)
 
 const SwitchNavigator = createSwitchNavigator
 (
@@ -39,6 +41,7 @@ const SwitchNavigator = createSwitchNavigator
       Auth: AuthStack,
     }
 )
+
 
 export default class AppBase extends React.Component {
   componentDidMount() {StatusBar.setHidden(true)}

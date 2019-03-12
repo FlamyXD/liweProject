@@ -24,15 +24,21 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "adb": "^0.2.0",
+    "axios": "^0.18.0",
     "expo": "^26.0.0",
+    "expoSDK": "30.0.0",
     "git": "^0.1.5",
     "mysql": "^2.15.0",
     "react": "16.3.0",
     "react-native": "^0.54.4",
     "react-native-button": "^2.3.0",
+    "react-native-debugger": "^1.1.0",
     "react-native-elements": "^1.0.0-beta7",
     "react-native-gifted-chat": "^0.4.3",
     "react-native-shadow": "^1.2.2",
-    "react-navigation": "^2.18.3"
+    "react-navigation": "^2.18.3",
+    "redux-devtools-extension": "^2.13.8",
+    "whatwg-fetch": "^3.0.0"
   }
 }

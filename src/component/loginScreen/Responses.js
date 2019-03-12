@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import {Alert} from 'react-native'
-import 'whatwg-fetch';
+import {Alert} from 'react-native';
+import axios from 'axios';
+
 
 
 const sellData = (login,passwd) =>
 {
-  fetch('http://localhost/work_directory/liwe/reg.php', {
+  fetch('https://liwe.000webhostapp.com/response.php', {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -20,10 +21,14 @@ const sellData = (login,passwd) =>
 
 )}
 
-/*
-const takeData  = (login,passwd) =>
+
+const GetData  = (login,passwd) =>
 {
-  fetch('http://localhost/workd_irectory/liwe/reg.php', {
+  console.log(login)
+  console.log(passwd)
+  /*
+  fetch('https://liwe.000webhostapp.com/response.php',
+  {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -31,10 +36,27 @@ const takeData  = (login,passwd) =>
     },
     body: JSON.stringify({
     login: login,
-    password: passwd,
+    password: password,
     })
-  })}
+  })
   */
+  axios({
+  method: 'get',
+  url: 'https://liwe.000webhostapp.com/response.php',
+  data: JSON.stringify({
+  login: login,
+  password: password})
+  })
+  .then((response) => {
+      var money = response.data.money
+      console.log(response)
+      console.log(money)
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+}
+
 
   const ConfPassword = (passwd, passwdConf, login) =>{
     /* если проверка совпадает то мы отправляем логин
@@ -61,4 +83,4 @@ const takeData  = (login,passwd) =>
   }
 
 
-export default ConfPassword
+export default GetData
