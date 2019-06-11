@@ -1,30 +1,7 @@
 import React, { Component } from 'react';
 import {ImageBackground,Image,ScrollView,StatusBar, View, Text,TextInput,StyleSheet, TouchableOpacity, MaterialCommunityIcons} from 'react-native';
 import { createStackNavigator,navigationOptions,createDrawerNavigator, DrawerActions} from 'react-navigation';
-import { Icon} from 'react-native-elements'
-
-const Header = () =>
-{
-  return(
-    <View style={Styles.header}>
-    <TouchableOpacity
-    onPress={() => this.props.navigation.goBack()}
-    style={{flex:1}}>
-      <Text style = {Styles.text}>
-        Task
-      </Text>
-    </TouchableOpacity>
-  </View>)
-}
-
-const ScrollContent = () =>{
-  return(
-    <View style={{backgroundColor:"white"}}>
-      <Text>
-      Дарова нахуй ты должен пойти нахуй, если ты согласен то нажми кнопку принят
-      </Text>
-    </View>
-)}
+import { Icon } from 'react-native-elements'
 
 
 export default class TheTask extends React.Component
@@ -34,59 +11,97 @@ export default class TheTask extends React.Component
     render()
     {
     return (
-    <View style={Styles.Screen}>
-    <Header/>
-      <ScrollView style={Styles.scrollView}>
+    <View style={Styles.screen}>
+      <View style={Styles.header}>
+        <TouchableOpacity // button back
+        style={Styles.button}
+        onPress={()=> this.props.navigation.navigate("HomeScreen")}>
+          <Icon name='left' type="antdesign" size={20}/>
+        </TouchableOpacity>
+        <TouchableOpacity // button option
+        style={Styles.button}
+        onPress={()=> this.props.navigation.navigate("Settings")}>
+          <Icon name='options-vertical' type="simple-line-icon" size={15}/>
+        </TouchableOpacity>
+      </View>
+      <View style={Styles.imageSlider}>
+        <TouchableOpacity style={Styles.buttonsSlider}>
+          <Icon name='left' type="antdesign" size={30}/>
+        </TouchableOpacity>
         <Image
-          style={Styles.image}
-          source={{uri: 'https://pp.userapi.com/c844616/v844616932/18c405/nI-z8BZW3_E.jpg'}}
-        />
-        <ScrollContent/>
+        style={Styles.ImagePreview}
+        source={require('./test.jpg')}/>
+        <TouchableOpacity style={Styles.buttonsSlider}>
+          <Icon name='right' type="antdesign" size={30}/>
+        </TouchableOpacity>
+      </View>
+      <ScrollView style={{flex:1, alignSelf:"center", backgroundColor:"#FFFFFF",width:"100%"}}>
+        <Text style={Styles.text}>
+          TEXT
+        </Text>
       </ScrollView>
-
     </View>
+
+
     )
   }
 }
 
 
 const Styles = StyleSheet.create({
-  scrollView:{
-
-  },
-  image:{
-    marginTop:20,
-    marginBottom:20,
+  buttonsSlider:{
+    flex:1,
     alignSelf:"center",
-    width:200,
-    height:200,
-    justifyContent:"center",
-    shadowColor:"#0745F1",
-    shadowRadius:30,
-    shadowOffset:{width: 50, height:50}
+    alignItems:"center"
   },
-  content:{
-    flex:1
+  imageSlider:{
+    flex:0.5,
+    justifyContent:"space-between",
+    flexDirection:"row",
+    padding: 10,
+    margin:10.
   },
   text:{
-    color:'#ff7733',
-    fontSize: 20,
-    alignItems:'flex-start',
-    justifyContent:'center',
-    top:'50%'
-  },
-  header:{
-    backgroundColor:'#771122',
-    height:"10%",
-    width:"100%",
-    shadowColor:"#000",
-    elevation:3,
+    justifyContent:"center",
+    alignSelf:"center",
+    padding:10,
+    shadowColor:"black",
     shadowOpacity: 10,
     shadowRadius:30,
-    shadowOffset:{width: 5, height:5}
+    shadowOffset:{width: 50, height:50},
   },
-  Screen:{
-  width:'100%',
-  height:'100%',
-  backgroundColor:"#8B7979",}
+  ImagePreview:{
+    resizeMode:"stretch",
+    alignSelf:"center",
+
+  },
+  screen:{
+    flex:1,
+    backgroundColor:"#FFFFFF",
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  back:{
+    marginRight:"10%",
+    marginLeft:"10%",
+    justifyContent:"center",
+  },
+  options:{
+    marginRight:"10%",
+    marginLeft:"10%",
+    justifyContent:"center",
+  },
+  header:{
+      margin:5,
+      padding:5,
+      flex:0.1,
+      flexDirection: "row",
+      justifyContent: 'space-between',
+      backgroundColor:"white",
+  },
+  button:{
+    marginRight:20,
+    marginLeft:20,
+    justifyContent:"center",
+},
 })

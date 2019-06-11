@@ -1,53 +1,94 @@
 import React, { Component } from 'react';
-import { View, Text,TextInput,StyleSheet, TouchableOpacity} from 'react-native';
-import { createStackNavigator,navigationOptions } from 'react-navigation';
+import {Image,StatusBar, View, Text,TextInput,StyleSheet, TouchableOpacity,ScrollView, ImageBackground } from 'react-native';
+import { createStackNavigator, createDrawerNavigator, DrawerActions} from 'react-navigation';
 
-export default class CompleteTasks extends React.Component
-{
-    render()
-    {
+export default class CompleteTasks extends Component{
+    render(){
     return (
-    <View style={Styles.inputText}>
-          <View style={Styles.text}>
-            <Text>
-              CompleteTasks
-            </Text>
-          </View>
-    </View>
-    )
+      <View style={{flex:1}}>
+      <View style={Styles.header}>
+        <TouchableOpacity
+        style={Styles.drawer}
+        onPress={()=> this.props.navigation.navigate("HomeScreen")}>
+         <Image
+         style={{resizeMode:"contain", width:20,height:20}}
+         source={require('./icon/back.png')}/>
+        </TouchableOpacity>
+        <View style={{justifyContent:"center",alignSelf:"center"}}>
+          <Text style={{fontSize:20,fontFamily:"Roboto"}}>
+            Complete Tasks
+          </Text>
+        </View>
+        <TouchableOpacity
+        style={Styles.drawer}
+        onPress={()=> this.props.navigation.navigate("Settings")}>
+         <Image
+         style={{resizeMode:"contain",width:25,height:25}}
+         source={require('./icon/options.png')}/>
+        </TouchableOpacity>
+      </View>
+        <ScrollView style = {Styles.TaskList}>
+          <TouchableOpacity
+          onPress={()=>
+          this.props.navigation.navigate("Task")}
+          style={Styles.taskPreview}>
+            <ImageBackground
+            source={require('./test.jpg')}
+            style={Styles.Image}>
+              <View style = {Styles.blankField}>
+                <Text style = {Styles.text}>
+                  Task
+                </Text>
+              </View>
+            </ImageBackground>
+          </TouchableOpacity>
+        </ScrollView>
+      </View>
+  )
   }
+
 }
 
 
 const Styles = StyleSheet.create({
-  info:{
-    flex:1,
+  drawer:{
+    marginRight:"10%",
+    marginLeft:"10%",
     justifyContent:"center",
-    alignItems:"center",
-},
-  vievStyle:{
-    opacity:1,
-    borderRadius:30,
-    alignItems:"center",
-    justifyContent:'center',
-    height:100,
-    width:200,
-    shadowColor:"#000",
-    elevation:3,
-    shadowOpacity: 10,
-    shadowRadius:30,
-    shadowOffset:{width: 5, height:5}
-
   },
-  inputText:
-  {
-  width:'100%',
-  height:'100%',
-  backgroundColor:"#8B7979",
-},
-  text:{
-    flex:1,
-    justifyContent:'center',
+  header:{
+    flex:0.1,
+    flexDirection: "row",
+    justifyContent: 'space-between',
+  },
+  taskPreview:{
+  marginTop:5,
+  marginRight: 10,
+  marginLeft: 10,
+  justifyContent: 'space-between',
+  alignSelf:'center',
+  width: "80%" ,
+  height: 220,
+  backgroundColor: "#E6E6FA"
+  },
+  Image:{
+    width: "100%" ,
+    height: "100%"
+  },
+  blankField:{
+    top:'90%',
+    flex:0.1,
     alignItems:'center',
+    justifyContent:'flex-end',
+    backgroundColor:"white",
+    opacity:0.7
+  },
+  text:{
+    justifyContent:'center',
+    alignSelf:'flex-start',
+    left:"5%"
+  },
+  TaskList:{
+    flexDirection: "column",
   }
 })

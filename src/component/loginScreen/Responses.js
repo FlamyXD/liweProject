@@ -1,73 +1,73 @@
 import React, { Component } from 'react';
 import {Alert} from 'react-native';
-import axios from 'axios';
 
 
-
-const sellData = (login,passwd) =>
-{
-  fetch('https://liwe.000webhostapp.com/response.php', {
-    method: 'POST',
-    credentials: 'include',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-    login: login,
-    password: passwd,
+const Log_in  = () => {
+    fetch("http://192.168.1.128:1433/login",{
+      method: "POST",
+      data: JSON.stringify
+      ({
+      login: login,
+      password: password
+      })
+    }
+  )
+    .then((response) => {
+    console.log("Вход выполнен успешно")
+    console.log(response)
+    }).catch((error) => {
+      Alert.alert(
+        'Вход не выполнен',
+        [{text: 'Повторить попытку?', onPress: () => console.log('Ask me later pressed')},],
+        { cancelable: true })
+      console.error(error)
     })
-  }
+}
 
-)}
-
-
-const GetData  = (login,passwd) =>
-{
-  console.log(login)
-  console.log(passwd)
-  /*
-  fetch('https://liwe.000webhostapp.com/response.php',
-  {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
+const Registation  = (login,password) => {
+    fetch("http://192.168.1.128:1433/Registation",{
+    method: "POST",
+    data: JSON.stringify
+    ({
     login: login,
-    password: password,
+    password: password
     })
   })
-  */
-  axios({
-  method: 'get',
-  url: 'https://liwe.000webhostapp.com/response.php',
-  data: JSON.stringify({
-  login: login,
-  password: password})
-  })
-  .then((response) => {
-      var money = response.data.money
-      console.log(response)
-      console.log(money)
-    })
-    .catch((error) => {
+}.then((response) => {
+      console.log("Регистрация успешна")
+    }).catch((error) => {
+      Alert.alert(
+        'Регистрация прошла неудачно',
+        [{text: 'Повторить попытку?', onPress: () => console.log('Ask me later pressed')},],
+        { cancelable: true })
       console.error(error);
     })
 }
 
 
-  const ConfPassword = (passwd, passwdConf, login) =>{
-    /* если проверка совпадает то мы отправляем логин
-    если такой логин есть то мы выводим что такой пользватель уже существует*/
-    if(passwd == passwdConf){
-      console.log(login)
-      console.log(passwd)
-      sellData(login,passwd)
+var taskName
+var taskText
+var taskImage
+
+const taskInfo = () => {
+    fetch("http://192.168.1.128:1433/taskInfo",{
+    method: "POST",
+  })
+}.then((response) => {
+      taskName = response.body.taskName
+      taskText = response.body.taskText
+      taskImage = response.body.taskImage
+      console.log(response)
+    }).catch((error) => {
+      console.error(error);
+    })
+}
+
+
+  const ConfPassword = (password, passwdConf, login) =>{
+    if(password == passwdConf){
+      Registation(login,password)
     }
-    /* если проверка совпадает не совпадает то мы выводим компонент
-     с текстом пароли не совпадают*/
     else
     {
       Alert.alert
@@ -83,4 +83,4 @@ const GetData  = (login,passwd) =>
   }
 
 
-export default GetData
+export default {Log_in,Registation,taskInfo,ConfPassword}
