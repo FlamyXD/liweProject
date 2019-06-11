@@ -1,9 +1,17 @@
 {
   "expo": {
-    "sdkVersion": "26.0.0",
     "name": "Liwe",
-    "slug": "liwe",
-    "version": "0.1.0",
-    "description": "liwe project"
+    "slug": "liwexd",
+    "privacy": "public",
+    "sdkVersion": "32.0.0",
+    "platforms": [
+      "android"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "description": "",
+    "android": {
+      "package": "com.flamyxdCompany.flamyxd"
+    }
   }
 }

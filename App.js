@@ -8,7 +8,9 @@ import TheTask from './src/component/CoreScreen/Task'
 import ProfileScreen from './src/component/CoreScreen/Profile'
 import CompleteTasks from './src/component/CoreScreen/CompleteTasks'
 import Settings from './src/component/CoreScreen/Settings'
-
+import EditProfile from './src/component/CoreScreen/EditProfile'
+import SlideMenu from './src/component/CoreScreen/SlideMenu'
+import Rewards from './src/component/CoreScreen/Rewards'
 
 
 import { createStackNavigator, createAppContainer, createSwitchNavigator,createDrawerNavigator } from 'react-navigation';
@@ -25,29 +27,35 @@ const AuthStack = createStackNavigator({
 })
 
 const DrawerStack = createDrawerNavigator({
-  HomeScreen:Home,
+  HomeScreen: Home,
   Profile: ProfileScreen,
   CompleteTasks: CompleteTasks,
-  Settings: Settings
-}
-)
+  Settings: Settings,
+},
+{
+  contentComponent: SlideMenu,
+})
 
-const SwitchNavigator = createSwitchNavigator
-(
+const Container = createAppContainer(
+  createSwitchNavigator(
     {
-      PreLoad: PreLoadStack,
+      //PreLoad: PreLoadStack,
+      Auth: AuthStack,
       Drawer:DrawerStack,
       Task:TaskStask,
-      Auth: AuthStack,
+      EditProfile: EditProfile,
+      Rewards: Rewards
     }
-)
+))
+
 
 
 export default class AppBase extends React.Component {
   componentDidMount() {StatusBar.setHidden(true)}
   render() {
     return (
-         <SwitchNavigator/>
+      <Container/>
+
     )
   }
 }
