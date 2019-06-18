@@ -3,7 +3,7 @@ import { Image, View, Text,TextInput,StyleSheet,Icon,TouchableOpacity, ImageBack
 import { createStackNavigator,navigationOptions,DrawerActions } from 'react-navigation';
 import { LinearGradient } from 'expo';
 import Button from 'react-native-button';
-import Log_in from './Responses';
+import Log_in from './ResponsesLogin';
 
 
 
@@ -54,7 +54,7 @@ static navigationOptions = {header:null}
                   {
                   login = this.state.login
                   password = this.state.password
-                  Log_in()
+                  Log_in(login,password)
                   this.props.navigation.dispatch(DrawerActions.toggleDrawer())
                   }
                 }>

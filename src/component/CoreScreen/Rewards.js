@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import {Image,StatusBar, View, Text,TextInput,StyleSheet, TouchableOpacity,ScrollView, ImageBackground } from 'react-native';
+import {ImageBackground,Image,StatusBar, View, Text,TextInput,StyleSheet, TouchableOpacity,ScrollView} from 'react-native';
 import { createStackNavigator, createDrawerNavigator, DrawerActions} from 'react-navigation';
 import {BoxShadow} from 'react-native-shadow'
+import { Icon } from 'react-native-elements'
 
 export default class Rewards extends Component{
     render(){
     return (
-      <View style={{flex:1}}>
+      <ImageBackground source={{uri:'https://img2.goodfon.ru/original/1920x1080/b/46/siniy-goluboy-tekstury.jpg'}} style={{flex:1}}>
         <View style={Styles.header}>
           <TouchableOpacity
           style={Styles.button}
           onPress={()=> this.props.navigation.navigate("HomeScreen")}>
-           <Image
-           style={{resizeMode:"contain", width:20,height:20}}
-           source={require('./icon/back.png')}/>
+           <Icon name='left' type="antdesign" color="white" size={20}/>
           </TouchableOpacity>
           <View style={Styles.button}>
-            <Text>
+            <Text style={{color:'white'}}>
               191232 SLP
             </Text>
           </View>
@@ -30,13 +29,16 @@ export default class Rewards extends Component{
               style={Styles.Image}>
                 <View style = {Styles.blankField}>
                   <Text style = {Styles.text}>
-                    Task
+                    Reward
+                  </Text>
+                  <Text style = {Styles.text}>
+                    1000 SLP
                   </Text>
                 </View>
               </ImageBackground>
             </TouchableOpacity>
         </ScrollView>
-       </View>
+       </ImageBackground>
   )
   }
 
@@ -45,11 +47,12 @@ export default class Rewards extends Component{
 
 const Styles = StyleSheet.create({
   button:{
-  marginLeft:"5%",
-  marginRight:"5%",
-  justifyContent:"center",
+    marginRight:"10%",
+    marginLeft:"10%",
+    justifyContent:"center",
 },
   header:{
+    marginBottom:1,
     flex:0.1,
     flexDirection: "row",
     justifyContent: 'space-between',
@@ -64,6 +67,7 @@ const Styles = StyleSheet.create({
     backgroundColor: "#E6E6FA"
   },
   Image:{
+    justifyContent:"flex-end",
     flex:1,
     alignSelf:"center",
     width:"100%",
@@ -72,15 +76,15 @@ const Styles = StyleSheet.create({
   blankField:{
     minHeight:"10%",
     flex:0.1,
+    justifyContent:"space-between",
+    alignItems:"center",
     flexDirection:"row",
     backgroundColor:"white",
     opacity:0.7
   },
   text:{
-    flex:1,
-    justifyContent:'center',
-    alignSelf:'flex-start',
-    left:"5%"
+    marginHorizontal:10,
+    paddingHorizontal:10
   },
   rewardList:{
     flexDirection: "column",

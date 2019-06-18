@@ -1,19 +1,16 @@
 import React, {Component} from 'react';
 import {NavigationActions} from 'react-navigation';
-import {TouchableOpacity,Image,ScrollView, Text, View,StyleSheet} from 'react-native';
+import {ImageBackground, TouchableOpacity,Image,ScrollView, Text, View,StyleSheet} from 'react-native';
 import { Icon } from 'react-native-elements'
 import {BoxShadow} from 'react-native-shadow'
+
+import { LinearGradient } from 'expo';
 
 export default class SlideMenu extends React.Component {
   render() {
     return (
-      <View style={Styles.container}>
-
-          <View style={{backgroundColor:"grey" ,flex:0.5,alignItems:"center",justifyContent:"center"}}>
-            <Image
-            style={{flex:1,resizeMode:"cover"}}
-            source={require('./test.jpg')}/>
-          </View>
+        <LinearGradient colors={['#00A1C2',"#68DEF3"]}  style={Styles.container}>
+          <ImageBackground source={require('./test.jpg')} style={Styles.ImageProfile}/>
           <View style={Styles.optionsBox}>
           <TouchableOpacity
           style={Styles.option}
@@ -24,7 +21,7 @@ export default class SlideMenu extends React.Component {
             }
           }>
             <View style={Styles.icon}>
-              <Icon name='user' type="feather" size={25}/>
+              <Icon name='user' type="feather" color="white" size={25}/>
             </View>
             <Text style={Styles.text}>
               Username
@@ -39,7 +36,7 @@ export default class SlideMenu extends React.Component {
             }
           }>
             <View style={Styles.icon}>
-              <Icon name='clipboard-check-outline' type="material-community" size={25}/>
+              <Icon name='clipboard-check-outline' type="material-community" color="white" size={25}/>
             </View>
             <Text style={Styles.text}>
               Complete Tasks
@@ -57,7 +54,7 @@ export default class SlideMenu extends React.Component {
             paddingLeft:5,
             justifyContent:"center",
             alignSelf:"center"}}>
-              <Icon name='dollar' type="font-awesome" size={25}/>
+              <Icon name='dollar' type="font-awesome" color="white" size={25}/>
             </View>
             <Text style={Styles.text}>
               Rewards
@@ -72,26 +69,32 @@ export default class SlideMenu extends React.Component {
             }
           }>
             <View style={Styles.icon}>
-              <Icon name='setting' type="antdesign"/>
+              <Icon name='setting' type="antdesign" color="white"/>
             </View>
             <Text style={Styles.text}>
               Settings
             </Text>
           </TouchableOpacity>
           </View>
-    </View>
+    </LinearGradient>
     )
   }
 }
 
 const Styles = StyleSheet.create({
+  ImageProfile:{
+    flex:0.5,
+    alignItems:"center",
+    justifyContent:"center",
+    borderRadius:50,
+  },
   icon:{
     justifyContent:"center",
     alignSelf:"center"
   },
   text:{
     paddingLeft:20,
-    color:"black"
+    color:"white"
   },
   Settings:{
     marginTop:100,
@@ -111,11 +114,9 @@ const Styles = StyleSheet.create({
     paddingLeft:10,
     flex:1,
     justifyContent:"space-evenly",
-    backgroundColor:"white"
   },
   container: {
     flex:1,
-    backgroundColor:"#58585A"
   },
   ProfileImageBox:{
     flex:0.5

@@ -11,44 +11,74 @@ export default class TheTask extends React.Component
     render()
     {
     return (
-    <View style={Styles.screen}>
-      <View style={Styles.header}>
-        <TouchableOpacity // button back
-        style={Styles.button}
-        onPress={()=> this.props.navigation.navigate("HomeScreen")}>
-          <Icon name='left' type="antdesign" size={20}/>
-        </TouchableOpacity>
-        <TouchableOpacity // button option
-        style={Styles.button}
-        onPress={()=> this.props.navigation.navigate("Settings")}>
-          <Icon name='options-vertical' type="simple-line-icon" size={15}/>
-        </TouchableOpacity>
-      </View>
+    <ImageBackground source={{uri:'https://img2.goodfon.ru/original/1920x1080/b/46/siniy-goluboy-tekstury.jpg'}} style={Styles.screen}>
       <View style={Styles.imageSlider}>
         <TouchableOpacity style={Styles.buttonsSlider}>
-          <Icon name='left' type="antdesign" size={30}/>
+          <Icon name='left' type="antdesign" color="white" size={30}/>
         </TouchableOpacity>
         <Image
         style={Styles.ImagePreview}
         source={require('./test.jpg')}/>
         <TouchableOpacity style={Styles.buttonsSlider}>
-          <Icon name='right' type="antdesign" size={30}/>
+          <Icon name='right' type="antdesign" color="white" size={30}/>
         </TouchableOpacity>
       </View>
-      <ScrollView style={{flex:1, alignSelf:"center", backgroundColor:"#FFFFFF",width:"100%"}}>
+      <ScrollView style={Styles.ScrollBox}>
         <Text style={Styles.text}>
           TEXT
         </Text>
       </ScrollView>
-    </View>
+      <View style={Styles.ButtonsBox}>
+        <TouchableOpacity style={Styles.Buttons_left}
+        onPress={()=> this.props.navigation.navigate("HomeScreen")}>
+          <Text>
+            Decline
+          </Text>
+        </TouchableOpacity>
 
-
+        <TouchableOpacity style={Styles.Buttons_right}
+        onPress={()=> this.props.navigation.navigate("CompleteTasks")}>
+          <Text>
+            Accept
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
     )
   }
 }
 
 
 const Styles = StyleSheet.create({
+  Buttons_left:{
+    margin:5,
+    padding:5,
+    borderRadius:50,
+    flex:0.5,
+    alignItems:"center",
+    backgroundColor:"red",
+    justifyContent:"center",
+  },
+  Buttons_right:{
+    margin:5,
+    padding:5,
+    borderRadius:50,
+    flex:0.5,
+    justifyContent:"center",
+    alignItems:"center",
+    backgroundColor:"white"
+  },
+  ButtonsBox:{
+    flex:0.2,
+    flexDirection:"row",
+    justifyContent:"space-between",
+  },
+  ScrollBox:{
+    flex:1,
+    alignSelf:"center",
+    color:"white",
+    width:"100%"
+  },
   buttonsSlider:{
     flex:1,
     alignSelf:"center",
@@ -58,26 +88,23 @@ const Styles = StyleSheet.create({
     flex:0.5,
     justifyContent:"space-between",
     flexDirection:"row",
-    padding: 10,
-    margin:10.
+    paddingTop: 10,
+    marginTop:10,
+    paddingBottom: 10,
+    marginBottom:10.
   },
   text:{
+    color:"white",
     justifyContent:"center",
     alignSelf:"center",
     padding:10,
-    shadowColor:"black",
-    shadowOpacity: 10,
-    shadowRadius:30,
-    shadowOffset:{width: 50, height:50},
   },
   ImagePreview:{
     resizeMode:"stretch",
     alignSelf:"center",
-
   },
   screen:{
     flex:1,
-    backgroundColor:"#FFFFFF",
     flexDirection: 'column',
     justifyContent: 'center',
   },
@@ -92,16 +119,15 @@ const Styles = StyleSheet.create({
     justifyContent:"center",
   },
   header:{
-      margin:5,
-      padding:5,
-      flex:0.1,
+      marginVertical: 5,
+      paddingVertical:5,
+      marginHorizontal:5,
+      paddingHorizontal:5,
+      flex:0.05,
       flexDirection: "row",
       justifyContent: 'space-between',
-      backgroundColor:"white",
   },
   button:{
-    marginRight:20,
-    marginLeft:20,
     justifyContent:"center",
 },
 })

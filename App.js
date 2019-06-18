@@ -55,7 +55,6 @@ export default class AppBase extends React.Component {
   render() {
     return (
       <Container/>
-
     )
   }
 }

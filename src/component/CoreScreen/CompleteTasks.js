@@ -2,36 +2,31 @@ import React, { Component } from 'react';
 import {Image,StatusBar, View, Text,TextInput,StyleSheet, TouchableOpacity,ScrollView, ImageBackground } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, DrawerActions} from 'react-navigation';
 
+import { Icon } from 'react-native-elements'
+
 export default class CompleteTasks extends Component{
     render(){
     return (
-      <View style={{flex:1}}>
+      <ImageBackground source={{uri:'https://img2.goodfon.ru/original/1920x1080/b/46/siniy-goluboy-tekstury.jpg'}} style={{flex:1}}>
       <View style={Styles.header}>
         <TouchableOpacity
         style={Styles.drawer}
         onPress={()=> this.props.navigation.navigate("HomeScreen")}>
-         <Image
-         style={{resizeMode:"contain", width:20,height:20}}
-         source={require('./icon/back.png')}/>
+         <Icon name='left' type="antdesign" color="white" size={20}/>
         </TouchableOpacity>
         <View style={{justifyContent:"center",alignSelf:"center"}}>
-          <Text style={{fontSize:20,fontFamily:"Roboto"}}>
+          <Text style={{color:"white",fontSize:18,fontFamily:"Roboto"}}>
             Complete Tasks
           </Text>
         </View>
         <TouchableOpacity
         style={Styles.drawer}
         onPress={()=> this.props.navigation.navigate("Settings")}>
-         <Image
-         style={{resizeMode:"contain",width:25,height:25}}
-         source={require('./icon/options.png')}/>
+         <Icon name='options-vertical' type="simple-line-icon" color='white' size={15}/>
         </TouchableOpacity>
       </View>
         <ScrollView style = {Styles.TaskList}>
-          <TouchableOpacity
-          onPress={()=>
-          this.props.navigation.navigate("Task")}
-          style={Styles.taskPreview}>
+          <View style={Styles.taskPreview}>
             <ImageBackground
             source={require('./test.jpg')}
             style={Styles.Image}>
@@ -41,9 +36,9 @@ export default class CompleteTasks extends Component{
                 </Text>
               </View>
             </ImageBackground>
-          </TouchableOpacity>
+          </View>
         </ScrollView>
-      </View>
+      </ImageBackground>
   )
   }
 

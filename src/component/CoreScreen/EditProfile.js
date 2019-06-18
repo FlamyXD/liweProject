@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {TextInput,Image, View, Text, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import {ImageBackground,TextInput,Image, View, Text, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import { createStackNavigator,navigationOptions } from 'react-navigation';
 
 import {BoxShadow} from 'react-native-shadow'
@@ -8,13 +8,13 @@ export default class EditProfile extends React.Component
 {
     render(){
     return (
-    <View style={Styles.screen}>
+    <ImageBackground source={{uri: 'http://www.onkulis.com/wp-content/uploads/2018/08/DSC05088.jpg'}} style={Styles.screen}>
       <View style={Styles.UserSettings}>
         <View style={Styles.ButtonsBox}>
           <TouchableOpacity // button back
           style={Styles.button}
           onPress={()=> this.props.navigation.navigate("Settings")}>
-           <Text>
+           <Text style={{color:"white"}}>
             Done
            </Text>
           </TouchableOpacity>
@@ -22,7 +22,7 @@ export default class EditProfile extends React.Component
           <TouchableOpacity // button Log Out
           style={Styles.button}
           onPress={()=> this.props.navigation.navigate("Settings")}>
-            <Text>
+            <Text style={{color:"white"}}>
               Cancel
             </Text>
           </TouchableOpacity>
@@ -37,10 +37,10 @@ export default class EditProfile extends React.Component
             </View>
           </BoxShadow>
           <View style={{flex:1,paddingTop:10,alignSelf:"center",alignItems:"center"}}>
-            <Text style={{fontSize:20}}>
+            <Text style={{color:"white",fontSize:20}}>
               username
             </Text>
-            <Text style={{paddingTop:5,fontSize:16}}>
+            <Text style={{color:"white",paddingTop:5,fontSize:16}}>
               example@email.com
             </Text>
           </View>
@@ -100,7 +100,7 @@ export default class EditProfile extends React.Component
           </View>
         </ScrollView>
       </View>
-    </View>
+    </ImageBackground>
     )
   }
 }
@@ -131,7 +131,6 @@ const Styles = StyleSheet.create({
   UserBox:{
     maxHeight:"40%",
     paddingTop:20,
-    backgroundColor:"white",
     flex:1,
   },
   userPhoto:{
@@ -153,11 +152,9 @@ const Styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: 'space-between',
     maxHeight:50,
-    backgroundColor:"white"
   },
   UserSettings:{
     flex:1,
-    backgroundColor:"#BBBBBB"
   },
   screen:{
     flex:1,

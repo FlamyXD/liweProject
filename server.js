@@ -9,10 +9,44 @@ var connection = mysql.createConnection({
   database : 'liwe'
 });
 
+const promise = require('promise');
+
+
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
-var result
-var obj
+var login
+var password
+var errorMessage
+
+
+
+app.post('/AboutUser',jsonParser, function (req, res) {
+  let obj
+  let test
+  let login = req.body.login
+  AsynFunction()
+  console.log(test)
+  res.send(test)
+})
+
+let AsynFunction = async() =>
+{
+  await AboutUser(login)
+}
+
+
+let AboutUser = (login) => {
+   connection.query('SELECT `SLP`,`FirstName`,`LastName`,`email`,`userPhoto` FROM `users` WHERE `login`= "'+ login + '"', function(err, res) {
+    if(err) {
+      console.log("error: ", err);
+    }
+    else{
+      obj = {user:res}
+      test = JSON.stringify(obj)
+      return test
+    }
+  })
+}
 
 
 app.post('/taskInfo',jsonParser, function (req, res) {
@@ -32,44 +66,37 @@ let taskInfo = () => {
 }
 
 app.post('/login',jsonParser, function (req, res) {
-  Log_in()
-  console.log(result)
-  res.send(result)
+  console.log(req.body)
+  login = req.body.login
+  password = req.body.password
+  Log_in(login,password)
 })
 
-let Log_in  = () => {
-  connection.query('SELECT * FROM users as login ', function(err, res) {
+let Log_in  = (login,password) => {
+  connection.query('select * from users where login = "'+ login + '" and password = "'+ password + '"', function(err, res) {
     if (err) throw err
-    obj = {users:res}
-    result = JSON.stringify(obj);
-    console.log("Log in complete")
-    console.log(result)
+    console.log(res)
   })
 }
 
-app.post('/Registation',jsonParser, function (req, res) {
-  login = req.data.login //получаем логин и пароль из приложения которые ввел пользователь
-  password = req.data.password
-  Registation(login,password) //отправляем данные логина и пароля пользователя в функцию
-  console.log(result)
-  res.send(result)
+app.post('/Registration',jsonParser, function (req, res) {
+  console.log(req.body)
+  let login = req.body.login
+  let password = req.body.password
+  console.log(req.body.login)
+  console.log(req.body.password)
+  Registration(login,password) //отправляем данные логина и пароля пользователя в функцию
 })
 
-//INSERT INTO users as login VALUES +'login'+'
-let Registation  = (login,password) => { //получаем данные пользателя для регистрации
-  connection.query('INSERT INTO users as login VALUES login ', function(err, res)
+
+let Registration  = (login,password) => { //получаем данные пользателя для регистрации
+  connection.query('INSERT INTO users(login,password)  VALUES ("'+ login + '","' + password +'")', function(err, res)
   { //отправляем запрос для добавления данных в бд
     if (err) throw err
-    console.log(login)// выводим данные логина и пароля в консоль
-    console.log(res)
+    console.log(login)
+    console.log(password)
   })
-  connection.query('INSERT INTO users as password VALUES password ', function(err, res)
-  { //отправляем запрос для добавления данных в бд
-    if (err) throw err
-    console.log(password)// выводим данные логина и пароля в консоль
-    console.log(res)
-  })
-  console.log("Log in complete")
+  console.log("Registration complete")
 }
 
 

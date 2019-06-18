@@ -1,39 +1,30 @@
 import React, { Component } from 'react';
-import {Image, View, Text, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import {ImageBackground,Image, View, Text, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import { createStackNavigator,navigationOptions } from 'react-navigation';
-import ColorPalette from 'react-native-color-palette'
+
+import { Icon } from 'react-native-elements'
 
 import {BoxShadow} from 'react-native-shadow'
-
-const UncontrolledColorPicker = () => (
-  <ColorPalette
-    defaultColor={'#C0392B'}
-    colors={['#C0392B', '#E74C3C', '#9B59B6', '#8E44AD', '#2980B9']}
-    title={""}
-  />
-)
 
 
 export default class Settings extends React.Component
 {
     render(){
-      console.log(this.props.navigation);
+
     return (
-    <View style={Styles.screen}>
+    <ImageBackground imageStyle={{ opacity:0.9}} source={{uri: 'http://beepmunk.com/wp-content/uploads/2018/08/simple-blue-hd-motion-graphics-background-loop-youtube-with-regard-to-simple-blue-backgrounds.jpg'}} style={Styles.screen}>
       <View style={Styles.UserSettings}>
         <View style={Styles.ButtonsBox}>
           <TouchableOpacity // button back
           style={Styles.button}
           onPress={()=> this.props.navigation.navigate("HomeScreen")}>
-           <Image
-           style={{resizeMode:"contain", width:20,height:20}}
-           source={require('./icon/back.png')}/>
+           <Icon name='left' type="antdesign" color="white" size={20}/>
           </TouchableOpacity>
 
           <TouchableOpacity // button Log Out
           style={Styles.button}
           onPress={()=> this.props.navigation.navigate("LoginScreen")}>
-            <Text>
+            <Text style={{color:"white"}}>
               Log Out
             </Text>
           </TouchableOpacity>
@@ -48,62 +39,93 @@ export default class Settings extends React.Component
               </View>
             </BoxShadow>
           <View style={{flex:1,paddingTop:10,alignSelf:"center",alignItems:"center"}}>
-            <Text style={{fontSize:20}}>
+            <Text style={{color:"white",fontSize:20}}>
               username
             </Text>
-            <Text style={{paddingTop:5,fontSize:16}}>
+            <Text style={{color:"white",paddingTop:5,fontSize:16}}>
               example@email.com
             </Text>
           </View>
           <TouchableOpacity
           style={{
-          flex:0.5,
+          flex:1,
           alignItems:"center",
-          justifyContent:"center",
-          shadowColor:"#000",
-          elevation:8,
-          shadowOpacity: 10,
-          shadowRadius:30,
-          shadowOffset:{width: 200, height:300}
+          justifyContent:"flex-start",
         }}
           onPress={()=> this.props.navigation.navigate("EditProfile")}>
-            <Text style={{paddingTop:5,fontSize:12,textDecorationLine:"underline"}}>
+            <Text style={{color:"white",paddingTop:5,fontSize:12,textDecorationLine:"underline"}}>
               Edit Profile
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={Styles.CashBox}>
-          <Text style={{fontSize:20,paddingBottom:10}}>
-            Cash
-          </Text>
-          <Text style={{fontSize:16}}>
-            19123123 SLP
-          </Text>
-        </View>
-        <View style={Styles.ScrollBox}>
-          <Text style={{alignSelf:"center",fontSize:20,marginBottom:10}}>
-            Change Background color
-          </Text>
-          <ScrollView style={{flex:1,alignSelf:"center"}}>
-            <UncontrolledColorPicker/>
-          </ScrollView>
+
+        <View  style={Styles.ScrollBox}>
+          <View style={{flex:1,flexDirection:"column"}}>
+            <ImageBackground imageStyle={{ opacity:0.6,borderRadius: 40}} source={{uri:'http://www.topoboi.com/pic/201307/2560x1440/topoboi.com-1329.jpg'}} style={Styles.namebox}>
+              <Text style={Styles.infoText}>
+               Name
+              </Text>
+              <View style={Styles.infoCard}>
+                <Text style={{color:"white",paddingVertical:5,marginVertical:5,}}>
+                  First Name
+                </Text>
+                <Text style={{color:"white"}}>
+                  Last name
+                </Text>
+              </View>
+            </ImageBackground>
+            <ImageBackground imageStyle={{ opacity:0.6,borderRadius: 40}} source={{uri:'http://www.topoboi.com/pic/201307/2560x1440/topoboi.com-1329.jpg'}}  style={Styles.namebox}>
+              <Text style={Styles.infoText}>
+                Cash
+              </Text>
+              <View style={Styles.infoCard}>
+                <Text style={Styles.text}>
+                  19123123 SLP
+                </Text>
+              </View>
+            </ImageBackground>
+          </View>
         </View>
       </View>
-    </View>
+    </ImageBackground>
     )
   }
 }
 
 
 const Styles = StyleSheet.create({
+  infoCard:{
+    marginLeft:10,
+    paddingLeft:10,
+    alignSelf:"flex-start",
+  },
+  text:{
+    color:"white",
+    alignSelf:"center",
+    paddingVertical:5,
+    marginVertical:5
+  },
+  infoText:{
+    color:"white",
+    marginLeft:10,
+    paddingLeft:10,
+    alignSelf:"flex-start",
+    fontSize:18
+  },
+  namebox:{
+    maxHeight:150,
+    padding:5,
+    margin:5,
+    borderRadius:100,
+    flex:1,
+    padding:10,
+    margin:10,
+    alignItems:"center"
+  },
   ScrollBox:{
     flex:1,
-    paddingTop:20,
-    marginTop:20,
-    paddingBottom:20,
-    marginBottom:20,
-    alignItems:"center",
-    backgroundColor:"white",
+    paddingTop:5,
+    marginTop:5,
   },
   CashBox:{
     backgroundColor:"white",
@@ -118,8 +140,7 @@ const Styles = StyleSheet.create({
   },
   UserBox:{
     paddingTop:20,
-    backgroundColor:"white",
-    flex:2,
+    flex:1,
   },
   userPhoto:{
     alignItems:"center",
@@ -131,8 +152,8 @@ const Styles = StyleSheet.create({
     backgroundColor:"white"
   },
   button:{
-    marginRight:"10%",
-    marginLeft:"10%",
+    marginRight:"5%",
+    marginLeft:"5%",
     justifyContent:"center",
 },
   ButtonsBox:{
@@ -140,11 +161,9 @@ const Styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: 'space-between',
     maxHeight:50,
-    backgroundColor:"white",
   },
   UserSettings:{
     flex:1,
-    backgroundColor:"#BBBBBB"
   },
   screen:{
     flex:1,

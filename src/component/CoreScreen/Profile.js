@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {ScrollView, Image,View, Text,TextInput,StyleSheet, TouchableOpacity} from 'react-native';
+import {ImageBackground,ScrollView, Image,View, Text,TextInput,StyleSheet, TouchableOpacity} from 'react-native';
 import { createStackNavigator,navigationOptions } from 'react-navigation';
 import {BoxShadow} from 'react-native-shadow'
 import { Icon } from 'react-native-elements'
@@ -9,24 +9,29 @@ export default class ProfileScreen extends React.Component
     render()
     {
     return (
-      <View style={Styles.ProfileBox}>
+      <ImageBackground source={{uri: 'https://avatanplus.com/files/resources/original/5cbf18fa9730716a4a7992fb.jpg'}}  style={Styles.ProfileBox}>
         <View style={Styles.header}>
           <TouchableOpacity
            style={Styles.button}
            onPress={()=> this.props.navigation.navigate("HomeScreen")}>
-           <Icon name='left' type="antdesign" size={20}/>
+           <Icon name='left' type="antdesign" color="white" size={20}/>
+          </TouchableOpacity>
+          <TouchableOpacity
+           style={Styles.button}
+           onPress={()=> this.props.navigation.navigate("Settings")}>
+           <Icon name='options-vertical' type="simple-line-icon" color="white"  size={15}/>
           </TouchableOpacity>
         </View>
 
         <View style={Styles.UserBox}>
             <View style={Styles.textUser}>
-              <Text>
+              <Text style={{color:"white"}}>
                 username
               </Text>
             </View>
             <View style={Styles.Photo_Exp_Lvl}>
               <View style={Styles.textUser}>
-                <Text>
+                <Text style={{color:"white"}}>
                   Level 28
                 </Text>
               </View>
@@ -38,20 +43,20 @@ export default class ProfileScreen extends React.Component
                 </View>
               </BoxShadow>
               <View style={Styles.textUser}>
-                <Text>
+                <Text style={{color:"white"}}>
                   Experience
                 </Text>
               </View>
             </View>
             <View style={Styles.textUser}>
-              <Text>
+              <Text style={{color:"white"}}>
                 Rank
               </Text>
             </View>
         </View>
       <View style={Styles.InfoBox}>
       <View style={Styles.Achievements}>
-        <Text>
+        <Text style={{color:"white"}}>
          Achievement
         </Text>
         <ScrollView style={Styles.ScrollView}>
@@ -60,16 +65,8 @@ export default class ProfileScreen extends React.Component
           </Text>
         </ScrollView>
       </View>
-      <View style={Styles.Exp}>
-        <Text>
-         Exp
-        </Text>
-        <Text>
-          Добавить какой то эффект заполнения
-        </Text>
-      </View>
       <View style={Styles.Stats}>
-        <Text>
+        <Text style={{color:"white"}}>
          Stats
         </Text>
         <ScrollView style={Styles.ScrollView}>
@@ -78,9 +75,8 @@ export default class ProfileScreen extends React.Component
           </Text>
         </ScrollView>
       </View>
-
-      </View>
     </View>
+  </ImageBackground>
   )}
 }
 
@@ -94,11 +90,11 @@ const Styles = StyleSheet.create({
   ScrollView:{
     flex:1,
     borderRadius:20,
-    backgroundColor:"white",
+
     padding:"5%"
   },
   InfoBox:{
-    backgroundColor:"white",
+
     flex:2,
     flexDirection:"row",
     justifyContent:"space-evenly"
@@ -133,7 +129,7 @@ const Styles = StyleSheet.create({
     justifyContent:"space-between",
   },
   UserBox:{
-    backgroundColor:"white",
+
     justifyContent:"space-around",
     flexDirection:"row",
     flex:1,
@@ -143,14 +139,15 @@ const Styles = StyleSheet.create({
     flex:2,
   },
   header:{
-    justifyContent:"center",
-    backgroundColor:"white",
+    alignItems:"center",
+    flexDirection:"row",
+    justifyContent:"space-between",
     flex:0.2,
-
   },
   button:{
-    marginLeft:"5%",
-    alignSelf:"flex-start"
+    alignSelf:"center",
+    alignItems:"center",
+    marginHorizontal:"10%",
   },
   userPhoto:{
     backgroundColor:"white",

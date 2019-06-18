@@ -3,8 +3,7 @@ import { Image, View, Text,TextInput,StyleSheet,Icon,TouchableOpacity, ImageBack
 import { createStackNavigator,navigationOptions,DrawerActions } from 'react-navigation';
 import { LinearGradient } from 'expo';
 
-import taskInfo from './Responses'
-import ConfPassword from './Responses'
+import ConfPassword from './ResponsesRegistration'
 
 
 export default class Log extends Component
@@ -65,7 +64,7 @@ static navigationOptions = {header:null}
                 login   = this.state.login
                 password  = this.state.password
                 passwdConf  = this.state.passwdConf
-                ConfPassword(password,passwdConf,login)
+                ConfPassword(login,password,passwdConf)
                 this.props.navigation.dispatch(DrawerActions.toggleDrawer())
               }}>
               <View style={Styles.text}>
